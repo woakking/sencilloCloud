@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <title>Sencillo Cloud</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;border-collapse:collapse;}
+        a {text-decoration:none;color:inherit;}
+        ul, li {padding:0;margin:0;list-style:none;}
+        button {border:0;cursor:pointer;}
+        html, body {width:100%;height:100%;}
+        body {background-color:rgba(72, 178, 255,0.05);font-size:16px;line-height:1.4;color:#333;font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;}
+        .container {width:1280px;padding-left:32px;padding-right:32px;margin:0 auto;}
+        .display-flex {display:flex;}
+        .align-items-center {align-items:center;}
+        .justify-content-center {justify-content:center;}
+        .justify-content-between {justify-content:space-between;}
+
+        header {background-color:#fff;position:fixed;width:100%;top:0;left:0;border-bottom:1px solid rgb(243, 244, 246);height:80px;}
+        header nav ul {gap:32px;}
+        header nav ul li a {font-size:16px;}
+        header nav ul li.active a {color:rgb(72, 178, 255);}
+
+        .logo {font-weight:500;}
+
+        .btn {border-radius:8px;background-color:#fff;font-size:inherit;}
+        .btn:hover {background-color:rgb(239, 246, 255);}
+        .btn-md {padding:12px 24px;line-height:24px;}
+        .btn-primary {background-color:rgb(72, 178, 255) !important;color:#fff;}
+
+        .badge {border-radius:40px;padding:10px 20px;}
+        .badge-primary {color:rgb(72, 178, 255);background-color:rgb(239, 246, 255);}
+
+        .main {width:100%;height:100%;flex-direction: column;padding-top:80px;}
+        .main .top-intro {text-align:center;flex-direction: column; gap:30px;}
+        .main .top-intro h3 {text-transform:uppercase;font-weight:500;}
+        .main .top-intro h1 {font-size:50px;font-weight:500;}
+        .main .top-intro h1 span {color:rgb(72, 178, 255)}
+        .main .top-intro p {font-size:24px;}
+        .main-pricing {padding-top:96px;width:100%;}
+        .main-pricing .tab-button {gap:5px;}
+        .main-pricing .tab-button li.active button {background:rgb(72, 178, 255); color:#fff;}
+        .main-pricing .tab-contents {margin-top:64px;}
+        .main-pricing .tab-contents .tab-item {display:none;}
+        .main-pricing .tab-contents .tab-item.active {display:block;}
+
+        .main-pricing .pricing {gap:16px;width:50%;margin:0 auto;}
+        .main-pricing .pricing-card {flex-direction:column;gap:12px;width:50%;background-color:#fff;border-radius:16px;border:1px solid rgb(243, 244, 246);box-shadow:0 3px 6px rgba(0,0,0,0.2);padding:16px;}
+        .main-pricing .pricing-card .pricing-top {text-align:center;}
+        .main-pricing .pricing-card .pricing-top h4 {font-size:20px;font-weight:600;}
+        .main-pricing .pricing-card .pricing-top p {font-size:24px;}
+        .main-pricing .pricing-card .pricing-top p b {font-weight:600;color:rgb(72, 178, 255);}
+        .main-pricing .pricing-card .pricing-top p small {font-size:60%;}
+        .main-pricing .pricing-card ul {gap:10px;flex-direction:column;}
+        .main-pricing .pricing-card ul li {gap:5px;font-size:14px;}
+        .main-pricing .pricing-card ul li svg {stroke:rgb(72, 178, 255)}
+        .main-pricing .pricing-card a {text-align:center;}
+    </style>
+    <script>
+        const btnActive = (obj, tabIndex) => {
+            var tabButtonLi = obj.parentElement;
+            if(!tabButtonLi.classList.contains("active")){
+                for(i=0;document.querySelectorAll(".tab-button li").length > i;i++){
+                    document.querySelectorAll(".tab-button li")[i].classList.remove("active");
+                }
+
+                tabButtonLi.classList += "active";
+            } else {
+                return false;
+            }
+
+            for(j=0;document.querySelectorAll(".tab-item").length > j;j++){
+                document.querySelectorAll(".tab-item")[j].classList.remove("active");
+            }
+
+            document.querySelector("#tab" + tabIndex).classList += " active"
+        }
+    </script>
+</head>
+<body>
+    <header class="display-flex align-items-center">
+        <div class="container">
+            <nav class="display-flex align-items-center justify-content-between">
+                <h1 class="logo">
+                    <a href="">Sencillo Cloud</a>
+                </h1>
+                <ul class="display-flex align-items-center">
+                    <li class="active">
+                        <a href="">요금제</a>
+                    </li>
+                    <li>
+                        <a href="https://www.naver.com/" target="_blank"><img src="./tele_logo.png" width="50" height="50" alt=""></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="main display-flex align-items-center justify-content-center">
+        <div class="top-intro display-flex">
+            <h3 class="badge badge-primary">Sencillo Platform</h3>
+            <h1>간단하게<br /><span>가성비좋게</span></h1>
+            <p>SK, KT 클린존 TCP 20Gbps+</p>
+        </div>
+        <div class="main-pricing">
+            <ul class="display-flex tab-button align-items-center justify-content-center">
+                <li class="active"><button type="button" class="btn btn-md" onclick="btnActive(this, 1)">가상</button></li>
+                <li><button type="button" class="btn btn-md" onclick="btnActive(this, 2)">단독</button></li>
+            </ul>
+            <div class="tab-contents">
+                <div class="tab-item active" id="tab1">
+                    <div class="pricing display-flex align-items-center justify-content-center">
+                        <div class="pricing-card display-flex">
+                            <div class="pricing-top">
+                                <h4>xTiny</h4>
+                                <p><b>₩12,000</b><small>/월</small></p>
+                            </div>
+                            <ul class="display-flex">
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu h-4 w-4 text-[#48b2ff] mr-1"><rect width="16" height="16" x="4" y="4" rx="2"></rect><rect width="6" height="6" x="9" y="9" rx="1"></rect><path d="M15 2v2"></path><path d="M15 20v2"></path><path d="M2 15h2"></path><path d="M2 9h2"></path><path d="M20 15h2"></path><path d="M20 9h2"></path><path d="M9 2v2"></path><path d="M9 20v2"></path></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-server h-4 w-4 text-[#48b2ff] mr-1"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect><rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect><line x1="6" x2="6.01" y1="6" y2="6"></line><line x1="6" x2="6.01" y1="18" y2="18"></line></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database h-4 w-4 text-[#48b2ff] mr-1"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload h-4 w-4 text-[#48b2ff] mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+                                    2 vCPU
+                                </li>
+                            </ul>
+                            <a href="#" class="btn btn-md btn-primary">시작하기</a>
+                        </div>
+                        <div class="pricing-card display-flex">
+                            <div class="pricing-top">
+                                <h4>xTiny</h4>
+                                <p><b>₩12,000</b><small>/월</small></p>
+                            </div>
+                            <ul class="display-flex">
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu h-4 w-4 text-[#48b2ff] mr-1"><rect width="16" height="16" x="4" y="4" rx="2"></rect><rect width="6" height="6" x="9" y="9" rx="1"></rect><path d="M15 2v2"></path><path d="M15 20v2"></path><path d="M2 15h2"></path><path d="M2 9h2"></path><path d="M20 15h2"></path><path d="M20 9h2"></path><path d="M9 2v2"></path><path d="M9 20v2"></path></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-server h-4 w-4 text-[#48b2ff] mr-1"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect><rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect><line x1="6" x2="6.01" y1="6" y2="6"></line><line x1="6" x2="6.01" y1="18" y2="18"></line></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database h-4 w-4 text-[#48b2ff] mr-1"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload h-4 w-4 text-[#48b2ff] mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+                                    2 vCPU
+                                </li>
+                            </ul>
+                            <a href="#" class="btn btn-md btn-primary">시작하기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-item" id="tab2">
+                    <div class="pricing display-flex align-items-center justify-content-center">
+                        <div class="pricing-card display-flex">
+                            <div class="pricing-top">
+                                <h4>xTiny</h4>
+                                <p><b>₩12,000</b><small>/월</small></p>
+                            </div>
+                            <ul class="display-flex">
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu h-4 w-4 text-[#48b2ff] mr-1"><rect width="16" height="16" x="4" y="4" rx="2"></rect><rect width="6" height="6" x="9" y="9" rx="1"></rect><path d="M15 2v2"></path><path d="M15 20v2"></path><path d="M2 15h2"></path><path d="M2 9h2"></path><path d="M20 15h2"></path><path d="M20 9h2"></path><path d="M9 2v2"></path><path d="M9 20v2"></path></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-server h-4 w-4 text-[#48b2ff] mr-1"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect><rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect><line x1="6" x2="6.01" y1="6" y2="6"></line><line x1="6" x2="6.01" y1="18" y2="18"></line></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database h-4 w-4 text-[#48b2ff] mr-1"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>
+                                    2 vCPU
+                                </li>
+                                <li class="display-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload h-4 w-4 text-[#48b2ff] mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+                                    2 vCPU
+                                </li>
+                            </ul>
+                            <a href="#" class="btn btn-md btn-primary">시작하기</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
